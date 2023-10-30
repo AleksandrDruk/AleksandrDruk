@@ -4,8 +4,8 @@
     <img src="https://img.shields.io/badge/-Visual%20Studio%20Code-23A9F2?style=flat-square&logo=Visual%20Studio%20Code&logoColor=white"/>
     <img src="https://img.shields.io/badge/-Github-181717?style=flat-square&logo=GitHub&logoColor=white"/>
     <img src="https://img.shields.io/badge/-Git-F44D27?style=flat-square&logo=Git&logoColor=white"/>
-    <img src="https://img.shields.io/badge/WordPress-0073AA?style=for-the-badge&logo=WordPress&logoColor=white"/>
-    <img src="https://img.shields.io/badge/Bitrix-00AEEF?style=for-the-badge&logo=Bitrix&logoColor=white"/>
+    <img src="https://img.shields.io/badge/WordPress-0073AA?style=flat-square&logo=WordPress&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Bitrix-00AEEF?style=flat-square&logo=Bitrix&logoColor=white"/>
     <img src="https://img.shields.io/badge/-NPM-CB3837?style=flat-square&logo=NPM&logoColor=white"/>
     <img src="https://img.shields.io/badge/-Apache-D22128?style=flat-square&logo=Apache&logoColor=white"/>
     <img src="https://img.shields.io/badge/-Trello-0079BF?style=flat-square&logo=Trello&logoColor=white"/>
