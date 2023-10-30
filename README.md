@@ -26,7 +26,7 @@
   </p>
 </p>
 <p>
-  📣 Связаться со мной :<br/>
+  📣 Связаться со мной : <br/>
   <a href="mailto:aleksandr.druk.ru@gmail.com?subject=[GitHub]%20🔥%20Prise%20de%20contact&body=Bonjour%20Aleksandr%2C%0A%0AJe%20viens%20vers%20toi%20aujourd'hui%20après%20avoir%20vu%20ton%20profil%20GitHub%20pour%20..."><img src="https://img.shields.io/badge/e‑mail-D14836.svg?style=for-the-badge&logo=GMail&logoColor=white"/></a>
   <a href="https://t.me/AleksandrDRq"><img src="https://img.shields.io/badge/telegram-0088CC.svg?style=for-the-badge&logo=telegram&logoColor=white"/></a>
 </p>
