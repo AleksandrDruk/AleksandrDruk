@@ -1,6 +1,5 @@
 <div>
 <img src="https://github.com/bastndev/GitHub_Emoji.gif/blob/main/assets/gif/sp%20(6).gif?raw=true" width="85">
-<img src="https://img.itch.zone/aW1nLzI2NDk2NDIuZ2lm/original/CBInkP.gif">
 </div>
 
 <div align="left">  
