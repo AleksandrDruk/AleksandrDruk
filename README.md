@@ -1,6 +1,6 @@
 <div>
 <img src="https://github.com/bastndev/GitHub_Emoji.gif/blob/main/assets/gif/sp%20(6).gif?raw=true" width="85">
-<div class="tenor-gif-embed" data-postid="18666547" data-share-method="host" data-aspect-ratio="1.23077" data-width="100%"><a href="https://tenor.com/view/chrono-trigger-bonfire-camping-pixel-art-forest-gif-18666547">Chrono Trigger Bonfire GIF</a>from <a href="https://tenor.com/search/chrono+trigger-gifs">Chrono Trigger GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+<img src="https://tenor.com/ru/view/chrono-trigger-bonfire-camping-pixel-art-forest-gif-18666547">
 </div>
 
 <div align="left">  
