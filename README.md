@@ -1,5 +1,5 @@
 <div>
-https://github.com/bastndev/GitHub_Emoji.gif/blob/main/assets/stikers/ats%20(178).png?raw=true
+<img src="https://github.com/bastndev/GitHub_Emoji.gif/blob/main/assets/stikers/ats%20(178).png?raw=true">
 </div>
 
 <div align="left">  
