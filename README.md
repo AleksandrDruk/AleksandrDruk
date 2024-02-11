@@ -1,6 +1,6 @@
 <div>
 <img src="https://github.com/bastndev/GitHub_Emoji.gif/blob/main/assets/gif/sp%20(6).gif?raw=true" width="85">
-<img src="https://tenor.com/ru/view/chrono-trigger-bonfire-camping-pixel-art-forest-gif-18666547">
+<img src="https://media1.tenor.com/m/Q4SDldC74hYAAAAC/chrono-trigger-bonfire.gif">
 </div>
 
 <div align="left">  
