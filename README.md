@@ -2,6 +2,7 @@
 <img width="49%" height="195px" src="https://github-readme-stats.vercel.app/api?username=aleksandrdruk&show_icons=true&count_private=true&hide_border=true&title_color=2F81F7&icon_color=2F81F7&text_color=c9d1d9&bg_color=0d1117" alt="Dev github stats" /> 
 <img width="41%" height="195px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=aleksandrdruk&layout=compact&hide_border=true&title_color=2F81F7&text_color=2F81F7&bg_color=0d1117" />
 </div> 
+
 <p>
 <img src="https://github.com/tandpfun/skill-icons/blob/main/icons/HTML.svg" width="48" title="HTML"> 
 <img src="https://github.com/tandpfun/skill-icons/blob/main/icons/CSS.svg" width="48" title="CSS"> 
@@ -20,6 +21,7 @@
 <img src="https://github.com/tandpfun/skill-icons/blob/main/icons/MongoDB.svg" width="48" title="MongoDB">  
 <img src="https://github.com/tandpfun/skill-icons/blob/main/icons/Wordpress.svg" width="48" title="Wordpress">    
 </p>
+
 <p>
   📣 Связаться со мной : </br>
   <a href="mailto:aleksandr.druk.ru@gmail.com?subject=[GitHub]%20🔥%20Prise%20de%20contact&body=Bonjour%20Aleksandr%2C%0A%0AJe%20viens%20vers%20toi%20aujourd'hui%20après%20avoir%20vu%20ton%20profil%20GitHub%20pour%20..."><img src="https://img.shields.io/badge/e‑mail-D14836.svg?style=for-the-badge&logo=GMail&logoColor=white"/></a>
