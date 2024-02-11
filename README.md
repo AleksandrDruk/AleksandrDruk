@@ -1,8 +1,6 @@
 <div>
 <img src="https://github.com/bastndev/GitHub_Emoji.gif/blob/main/assets/gif/sp%20(6).gif?raw=true" width="85">
-<div transform="scale(-1,1)" style="transform:scale(-1,1);">
-<img src="https://github.com/bastndev/GitHub_Emoji.gif/blob/main/assets/gif/sp%20(6).gif?raw=true" width="85">
-</div>
+<img style="transform:scale(-1,1)" src="https://github.com/bastndev/GitHub_Emoji.gif/blob/main/assets/gif/sp%20(6).gif?raw=true" width="85">
 </div>
 
 <div align="left">  
