@@ -1,4 +1,4 @@
-<div style="display:flex; justify-content: space-between;">
+<div>
 <img src="https://github.com/bastndev/GitHub_Emoji.gif/blob/main/assets/gif/sp%20(6).gif?raw=true" width="85">
 </div>
 
