@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 103 30" width="103" height="30" role="img" aria-label="Tailwind">
+<style>text{font:500 13px ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace}</style>
+<rect x=".5" y=".5" width="102" height="29" rx="8" fill="#101116" stroke="#2a2c36"/>
+<rect x="12" y="11" width="8" height="8" fill="#38bdf8" rx="1.5"/>
+<text x="28" y="19.5" fill="#ece8e1" textLength="62.4" lengthAdjust="spacing">Tailwind</text>
+</svg>
