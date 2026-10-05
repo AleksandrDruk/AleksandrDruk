@@ -2,7 +2,7 @@
   "since": 2023,
   "repos": 42,
   "languages": {
-    "JavaScript": 6195388,
+    "JavaScript": 6200920,
     "HTML": 2011200,
     "CSS": 3459815,
     "PHP": 21778162,
@@ -14,7 +14,7 @@
     "Ruby": 161
   },
   "views": {
-    "raw": 1263,
-    "bot": 6
+    "raw": 1264,
+    "bot": 7
   }
 }
