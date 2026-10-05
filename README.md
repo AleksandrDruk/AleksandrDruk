@@ -65,8 +65,9 @@
 <br>
 
 <p>
-  <img src="https://github.com/bastndev/GitHub_Emoji.gif/blob/main/assets/gif/sp%20(6).gif?raw=true" width="56" align="left" alt="">
-  <sub>Факел горит с 2023 года</sub>
-  <br>
+  <img src="https://github.com/bastndev/GitHub_Emoji.gif/blob/main/assets/gif/sp%20(6).gif?raw=true" width="56" alt="">
+  &nbsp;
   <img src="https://views.whatilearened.today/views/github/AleksandrDruk/views.svg" alt="Просмотры профиля">
+  &nbsp;
+  <sub>Факел горит с 2023 года</sub>
 </p>
