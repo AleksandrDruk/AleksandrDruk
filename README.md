@@ -1,16 +1,16 @@
-<!-- Images in assets/ and the language block below are generated: node scripts/build.mjs -->
+<!-- Images in assets/ and the blocks between "start" and "end" markers are generated: node scripts/build.mjs -->
 
 <p>
   <img src="assets/hero.svg" width="100%" alt="Aleksandr Druk — web developer: WordPress, PHP, React, Next.js">
 </p>
 
 <p>
-  <b>Веб-разработчик.</b> Делаю сайты на WordPress и интерфейсы на React и Next.js — от вёрстки до бэкенда.
+  <b>Web developer.</b> I build WordPress sites and React / Next.js interfaces — from markup to backend.
 </p>
 
 <br>
 
-<p><code>01</code>&nbsp; <b>Стек</b></p>
+<p><code>01</code>&nbsp; <b>Stack</b></p>
 
 <p>
   <img src="assets/stack/_front.svg" height="30" alt="Front:">
@@ -38,7 +38,7 @@
 
 <br>
 
-<p><code>02</code>&nbsp; <b>Языки в репозиториях</b></p>
+<p><code>02</code>&nbsp; <b>Languages across my repos</b></p>
 
 <p>
 <!-- langs:start -->
@@ -55,7 +55,7 @@
 
 <br>
 
-<p><code>03</code>&nbsp; <b>Связаться со мной</b></p>
+<p><code>03</code>&nbsp; <b>Get in touch</b></p>
 
 <p>
   <a href="mailto:aleksandr.druk.ru@gmail.com?subject=%5BGitHub%5D%20"><img src="assets/contact/email.svg" width="151" alt="E-mail"></a>
@@ -66,8 +66,8 @@
 
 <p>
   <img src="https://github.com/bastndev/GitHub_Emoji.gif/blob/main/assets/gif/sp%20(6).gif?raw=true" width="56" alt="">
-  &nbsp;
-  <img src="https://views.whatilearened.today/views/github/AleksandrDruk/views.svg" alt="Просмотры профиля">
-  &nbsp;
-  <sub>Факел горит с 2023 года</sub>
+<!-- views:start -->
+<img src="assets/views.svg" width="434" alt="1257 profile views, torch lit since 2023">
+<!-- views:end -->
+  <img src="https://views.whatilearened.today/views/github/AleksandrDruk/views.svg" width="1" height="1" alt="">
 </p>

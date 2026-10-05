@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Builds every image of the profile README and refreshes its language section.
+// Builds every image of the profile README and refreshes its generated sections.
 //
 //   node scripts/build.mjs             fetch live data from the GitHub API, then render
 //   node scripts/build.mjs --no-fetch  render from scripts/data.json (after editing texts)
@@ -17,6 +17,7 @@ const DATA_FILE = join(ROOT, "scripts", "data.json");
 // ── Content ──────────────────────────────────────────────────────────────────
 
 const USER = "AleksandrDruk";
+const VIEWS_URL = `https://views.whatilearened.today/views/github/${USER}/views.svg`;
 const NAME = ["ALEKSANDR", "DRUK"];
 const ROLE = ["WEB DEVELOPER", "WORDPRESS · PHP", "REACT · NEXT.JS"];
 
@@ -68,6 +69,16 @@ const RANK = ["#ffd166", "#ff9f43", "#f0643a", "#c53f3f", "#8a5a80", "#525b78"];
 
 const MONO = "ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace";
 const REDUCED_MOTION = "@media (prefers-reduced-motion:reduce){*{animation:none!important}}";
+// Firelight flicker: lit pixels are dealt into the groups k0…k3, which dim out of step.
+const FLICKER_CSS = `.k0{animation:fl 3.1s ease-in-out infinite}
+.k1{animation:fl 2.3s ease-in-out -1.1s infinite}
+.k2{animation:fl 4.3s ease-in-out -2s infinite}
+.k3{animation:fl 1.9s ease-in-out -.6s infinite}
+@keyframes fl{0%,100%{opacity:1}22%{opacity:.84}41%{opacity:.97}63%{opacity:.78}82%{opacity:.93}}`;
+const SPARK_CSS = `.ex{animation:ex var(--t) cubic-bezier(.35,0,.85,.6) var(--d) infinite}
+.ey{opacity:0;animation:ey var(--t) cubic-bezier(.1,.5,.4,1) var(--d) infinite}
+@keyframes ex{to{transform:translateX(var(--x))}}
+@keyframes ey{0%{opacity:0}9%{opacity:1}60%{opacity:.75}100%{opacity:0;transform:translateY(var(--y))}}`;
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -110,10 +121,28 @@ function bitmap(rows, x, y, px, fills) {
   return out;
 }
 
+// A spark born somewhere in `box`: the outer group drifts sideways, the inner square rises and fades.
+function spark(rand, box, drift, size) {
+  const s = size + Math.floor(rand() * 3);
+  const vars = `--x:${Math.round(drift.x + rand() * drift.dx)}px;--y:${-Math.round(drift.y + rand() * drift.dy)}px;--t:${n(3.4 + rand() * 4)}s;--d:-${n(rand() * 7)}s`;
+  const fill = ["#ffe08a", "#ffb454", "#ff8a3c"][Math.floor(rand() * 3)];
+  return `<g class="ex" style="${vars}">${rect(box.x + rand() * box.w, box.y + rand() * box.h, s, s, fill, `class="ey" style="${vars}"`)}</g>`;
+}
+
 // ── Pixel art ────────────────────────────────────────────────────────────────
 
-// 5×7 dot-matrix glyphs — only the letters the name needs.
+// 5×7 dot-matrix glyphs — the letters the name needs and the digits of the counter.
 const GLYPHS = {
+  0: [".###.", "#...#", "#..##", "#.#.#", "##..#", "#...#", ".###."],
+  1: ["..#..", ".##..", "..#..", "..#..", "..#..", "..#..", ".###."],
+  2: [".###.", "#...#", "....#", "...#.", "..#..", ".#...", "#####"],
+  3: ["#####", "...#.", "..#..", "...#.", "....#", "#...#", ".###."],
+  4: ["...#.", "..##.", ".#.#.", "#..#.", "#####", "...#.", "...#."],
+  5: ["#####", "#....", "####.", "....#", "....#", "#...#", ".###."],
+  6: ["..##.", ".#...", "#....", "####.", "#...#", "#...#", ".###."],
+  7: ["#####", "....#", "...#.", "..#..", ".#...", ".#...", ".#..."],
+  8: [".###.", "#...#", "#...#", ".###.", "#...#", "#...#", ".###."],
+  9: [".###.", "#...#", "#...#", ".####", "....#", "...#.", ".##.."],
   A: [".###.", "#...#", "#...#", "#####", "#...#", "#...#", "#...#"],
   D: ["####.", "#...#", "#...#", "#...#", "#...#", "#...#", "####."],
   E: ["#####", "#....", "#....", "####.", "#....", "#....", "#####"],
@@ -182,13 +211,9 @@ function hero({ since, repos }) {
     stars += rect(x, y, s, s, "#7c88ad", `opacity="${n(0.25 + rand() * 0.55)}"${rand() > 0.72 ? ` class="tw" style="animation-delay:-${n(rand() * 4)}s"` : ""}`);
   }
 
-  // Sparks: the outer group drifts sideways, the inner one rises and fades.
   let sparks = "";
   for (let i = 0; i < 16; i++) {
-    const s = 3 + Math.floor(rand() * 3);
-    const vars = `--x:${Math.round(-40 + rand() * 430)}px;--y:${-Math.round(120 + rand() * 150)}px;--t:${n(3.4 + rand() * 4)}s;--d:-${n(rand() * 7)}s`;
-    const fill = ["#ffe08a", "#ffb454", "#ff8a3c"][Math.floor(rand() * 3)];
-    sparks += `<g class="ex" style="${vars}">${rect(fire.x - 14 + rand() * 28, flameY + 6 + rand() * 22, s, s, fill, `class="ey" style="${vars}"`)}</g>`;
+    sparks += spark(rand, { x: fire.x - 14, y: flameY + 6, w: 28, h: 22 }, { x: -40, dx: 430, y: 120, dy: 150 }, 3);
   }
 
   const flame = FLAME.map((frame, i) => `<g class="fr fr${i}">${bitmap(frame, torchX, flameY, Q, FLAME_FILLS)}</g>`).join("");
@@ -201,11 +226,7 @@ function hero({ since, repos }) {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${NAME.join(" ")} — ${ROLE.join(", ").toLowerCase()}">
 <style>
 text{font:600 12px ${MONO};letter-spacing:2.2px}
-.k0{animation:fl 3.1s ease-in-out infinite}
-.k1{animation:fl 2.3s ease-in-out -1.1s infinite}
-.k2{animation:fl 4.3s ease-in-out -2s infinite}
-.k3{animation:fl 1.9s ease-in-out -.6s infinite}
-@keyframes fl{0%,100%{opacity:1}22%{opacity:.84}41%{opacity:.97}63%{opacity:.78}82%{opacity:.93}}
+${FLICKER_CSS}
 .glow{transform-origin:${n(fire.x)}px ${n(fire.y)}px;animation:gl 2.6s ease-in-out infinite}
 @keyframes gl{0%,100%{opacity:.88;transform:scale(1)}30%{opacity:1;transform:scale(1.05)}55%{opacity:.74;transform:scale(.96)}80%{opacity:.95;transform:scale(1.02)}}
 .fr{opacity:0;animation:fr .64s step-end infinite}
@@ -213,10 +234,7 @@ text{font:600 12px ${MONO};letter-spacing:2.2px}
 @keyframes fr{0%{opacity:1}25%,100%{opacity:0}}
 .tw{animation:tw 4s ease-in-out infinite}
 @keyframes tw{50%{opacity:.08}}
-.ex{animation:ex var(--t) cubic-bezier(.35,0,.85,.6) var(--d) infinite}
-.ey{opacity:0;animation:ey var(--t) cubic-bezier(.1,.5,.4,1) var(--d) infinite}
-@keyframes ex{to{transform:translateX(var(--x))}}
-@keyframes ey{0%{opacity:0}9%{opacity:1}60%{opacity:.75}100%{opacity:0;transform:translateY(var(--y))}}
+${SPARK_CSS}
 ${REDUCED_MOTION}
 </style>
 <defs>
@@ -245,6 +263,66 @@ ${sparks}
 <rect x=".5" y=".5" width="${W - 1}" height="${H - 1}" rx="21.5" fill="none" stroke="${LINE}"/>
 </svg>
 `;
+}
+
+// ── View counter ─────────────────────────────────────────────────────────────
+
+// A dot-matrix display standing next to the mascot's torch: the light falls from the left,
+// and unlit dots stay faintly visible, the way they do on a real display.
+function counter({ views, since }) {
+  const count = String(Math.max(0, views.raw - views.bot));
+  const digits = [...count.padStart(6, " ")];
+  const labels = [["VISITORS BY THE FIRE", TEXT], [`TORCH LIT SINCE ${since}`, MUTED]];
+  const H = 56, D = 6, PITCH = 5 * D + 7; // dot pitch and digit pitch
+  const fs = 11, ls = 1.6, cw = fs * 0.6 + ls;
+  const X0 = Math.round(18 + Math.max(...labels.map(([l]) => l.length)) * cw - ls + 22), Y0 = (H - 7 * D + 1) / 2;
+  const W = X0 + digits.length * PITCH - 7 - 1 + 18;
+  const rand = prng(56);
+
+  const lit = ["", "", "", ""];
+  let unlit = "";
+  digits.forEach((digit, i) => {
+    for (let r = 0; r < 7; r++) {
+      for (let col = 0; col < 5; col++) {
+        const x = X0 + i * PITCH + col * D, y = Y0 + r * D;
+        if (GLYPHS[digit]?.[r][col] === "#") lit[Math.floor(rand() * 4)] += rect(x, y, D - 1, D - 1, ramp(FIRE, 0.08 + ((x - X0) / (W - X0)) * 0.4), 'rx="1"');
+        else unlit += rect(x, y, D - 1, D - 1, "#1d1f29", 'rx="1"');
+      }
+    }
+  });
+
+  let sparks = "";
+  for (let i = 0; i < 6; i++) sparks += spark(rand, { x: 2, y: 34, w: 36, h: 18 }, { x: 30, dx: 170, y: 40, dy: 30 }, 2);
+
+  const label = `${count} profile views, torch lit since ${since}`;
+  return {
+    label,
+    width: W,
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${esc(label)}">
+<style>
+text{font:600 ${fs}px ${MONO};letter-spacing:${ls}px}
+${FLICKER_CSS}
+.glow{animation:gp 2.6s ease-in-out infinite}
+@keyframes gp{0%,100%{opacity:.85}30%{opacity:1}55%{opacity:.68}80%{opacity:.95}}
+${SPARK_CSS}
+${REDUCED_MOTION}
+</style>
+<defs>
+<clipPath id="panel"><rect width="${W}" height="${H}" rx="12"/></clipPath>
+<radialGradient id="light" cx="-6" cy="${H / 2}" r="250" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ff9a4a" stop-opacity=".42"/><stop offset=".4" stop-color="#ff7a3a" stop-opacity=".12"/><stop offset="1" stop-color="#d9482f" stop-opacity="0"/></radialGradient>
+</defs>
+<g clip-path="url(#panel)">
+<rect width="${W}" height="${H}" fill="${PANEL}"/>
+<rect width="${W}" height="${H}" fill="url(#light)" class="glow"/>
+${sparks}
+${labels.map(([text, fill], i) => `<text x="18" y="${25 + i * 16}" fill="${fill}" textLength="${n(text.length * cw - ls)}" lengthAdjust="spacing">${esc(text)}</text>`).join("\n")}
+${unlit}
+${lit.map((g, i) => `<g class="k${i}">${g}</g>`).join("\n")}
+</g>
+<rect x=".5" y=".5" width="${W - 1}" height="${H - 1}" rx="11.5" fill="none" stroke="${LINE}"/>
+</svg>
+`,
+  };
 }
 
 // ── Chips, buttons, language bar ─────────────────────────────────────────────
@@ -336,7 +414,24 @@ async function api(path) {
   return res.json();
 }
 
-async function fetchData() {
+// The counter service only speaks SVG: the count is the last number in its badge.
+// Reading the badge counts as a view, so our own reads are tallied in `bot` and
+// subtracted on display. The counter is decoration: if the service is down, keep the last count.
+async function fetchViews(previous) {
+  try {
+    const res = await fetch(VIEWS_URL, { headers: { "User-Agent": USER } });
+    if (!res.ok) throw new Error(`answered ${res.status}`);
+    const raw = Number([...(await res.text()).matchAll(/>(\d+)<\/text>/g)].at(-1)?.[1]);
+    if (!Number.isInteger(raw)) throw new Error("sent a badge without a count");
+    return { raw, bot: (previous?.bot ?? 0) + 1 };
+  } catch (error) {
+    if (!previous) throw error;
+    console.warn(`View counter ${error.message}; keeping the last known count`);
+    return previous;
+  }
+}
+
+async function fetchData(previous) {
   const user = await api(`/users/${USER}`);
   const repos = [];
   for (let page = 1; ; page++) {
@@ -350,7 +445,8 @@ async function fetchData() {
       languages[name] = (languages[name] ?? 0) + size;
     }
   }
-  return { since: new Date(user.created_at).getUTCFullYear(), repos: user.public_repos, languages };
+  const views = await fetchViews(previous?.views);
+  return { since: new Date(user.created_at).getUTCFullYear(), repos: user.public_repos, languages, views };
 }
 
 // ── Build ────────────────────────────────────────────────────────────────────
@@ -360,11 +456,20 @@ async function write(path, content) {
   await writeFile(join(ASSETS, path), content);
 }
 
+// Replaces what sits between the <!-- name:start --> and <!-- name:end --> markers of the README.
+function fill(readme, name, html) {
+  const marked = new RegExp(`(<!-- ${name}:start -->\\n)[\\s\\S]*?(<!-- ${name}:end -->)`);
+  if (!marked.test(readme)) throw new Error(`README.md has lost its <!-- ${name}:start --> / <!-- ${name}:end --> markers`);
+  return readme.replace(marked, (_, start, end) => `${start}${html}\n${end}`);
+}
+
+const stored = await readFile(DATA_FILE, "utf8").then(JSON.parse, () => null);
 let data;
 if (process.argv.includes("--no-fetch")) {
-  data = JSON.parse(await readFile(DATA_FILE, "utf8"));
+  if (!stored) throw new Error("scripts/data.json is missing: run once without --no-fetch");
+  data = stored;
 } else {
-  data = await fetchData();
+  data = await fetchData(stored);
   await writeFile(DATA_FILE, JSON.stringify(data, null, 2) + "\n");
 }
 
@@ -383,15 +488,17 @@ await rm(join(ASSETS, "langs"), { recursive: true, force: true });
 await write("langs/bar.svg", bar(langs));
 for (const [i, l] of langs.entries()) await write(`langs/${i + 1}.svg`, chip(l.name, l.color, l.label));
 
-const section = [
+const views = counter(data);
+await write("views.svg", views.svg);
+
+const readmeFile = join(ROOT, "README.md");
+let readme = await readFile(readmeFile, "utf8");
+readme = fill(readme, "langs", [
   `<img src="assets/langs/bar.svg" width="100%" alt="${esc(langs.map((l) => `${l.name} ${l.label}`).join(", "))}">`,
   "<br>",
   ...langs.map((l, i) => `<img src="assets/langs/${i + 1}.svg" height="30" alt="${esc(`${l.name} ${l.label}`)}">`),
-].join("\n");
-const readmeFile = join(ROOT, "README.md");
-const readme = await readFile(readmeFile, "utf8");
-const marked = /(<!-- langs:start -->\n)[\s\S]*?(<!-- langs:end -->)/;
-if (!marked.test(readme)) throw new Error("README.md has lost its <!-- langs:start --> / <!-- langs:end --> markers");
-await writeFile(readmeFile, readme.replace(marked, `$1${section}\n$2`));
+].join("\n"));
+readme = fill(readme, "views", `<img src="assets/views.svg" width="${views.width}" alt="${esc(views.label)}">`);
+await writeFile(readmeFile, readme);
 
-console.log(`Built ${langs.map((l) => `${l.name} ${l.label}`).join(" · ")}`);
+console.log(`Built ${langs.map((l) => `${l.name} ${l.label}`).join(" · ")} · ${views.label}`);
