@@ -42,10 +42,10 @@
 
 <p>
 <!-- langs:start -->
-<img src="assets/langs/bar.svg" width="100%" alt="PHP 65.0%, JavaScript 18.4%, CSS 10.3%, HTML 6.0%, TypeScript 0.1%, SCSS 0.1%">
+<img src="assets/langs/bar.svg" width="100%" alt="PHP 65.0%, JavaScript 18.5%, CSS 10.3%, HTML 6.0%, TypeScript 0.1%, SCSS 0.1%">
 <br>
 <img src="assets/langs/1.svg" height="30" alt="PHP 65.0%">
-<img src="assets/langs/2.svg" height="30" alt="JavaScript 18.4%">
+<img src="assets/langs/2.svg" height="30" alt="JavaScript 18.5%">
 <img src="assets/langs/3.svg" height="30" alt="CSS 10.3%">
 <img src="assets/langs/4.svg" height="30" alt="HTML 6.0%">
 <img src="assets/langs/5.svg" height="30" alt="TypeScript 0.1%">

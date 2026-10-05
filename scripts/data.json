@@ -2,9 +2,9 @@
   "since": 2023,
   "repos": 42,
   "languages": {
+    "JavaScript": 6195388,
     "HTML": 2011200,
     "CSS": 3459815,
-    "JavaScript": 6175498,
     "PHP": 21778162,
     "Python": 7750,
     "Shell": 1521,
