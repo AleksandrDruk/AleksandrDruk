@@ -67,7 +67,7 @@
 <p>
   <img src="https://github.com/bastndev/GitHub_Emoji.gif/blob/main/assets/gif/sp%20(6).gif?raw=true" width="56" alt="">
 <!-- views:start -->
-<img src="assets/views.svg" width="434" alt="1264 profile views, torch lit since 2023">
+<img src="assets/views.svg" width="434" alt="1265 profile views, torch lit since 2023">
 <!-- views:end -->
   <img src="https://views.whatilearened.today/views/github/AleksandrDruk/views.svg" width="1" height="1" alt="">
 </p>
